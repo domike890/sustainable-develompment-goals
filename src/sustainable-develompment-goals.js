@@ -10,11 +10,15 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
   constructor() {
     super();
     this.title = "";
+    this.goal = "";
+    this.label = "";
   }
 
   static get properties() {
     return {
       title: { type: String },
+      goal: { type: String },
+      label: { type: String},
     };
   }
 
@@ -38,11 +42,78 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
       }
     `];
   }
-
+  getLabel(){
+    if (this.label===""){
+      if (this.goal==="1"){
+        return "No poverty";
+      }
+      else if(this.goal==="2"){
+        return "Zero hunger";
+      }
+      else if(this.goal==="3"){
+        return "Good health and well-being";
+      }
+      else if(this.goal==="4"){
+        return "Quality education";
+      }
+      else if(this.goal==="5"){
+        return "Gender Equality";
+      }
+      else if(this.goal==="6"){
+        return "Clean water and sanitation";
+      }
+      else if(this.goal==="7"){
+        return "Affordable and clean energy";
+      }
+      else if(this.goal==="8"){
+        return "Decent work and economic growth";
+      }
+      else if(this.goal==="9"){
+        return "Industry, innovation and infrastructure";
+      }
+      else if(this.goal==="10"){
+        return "Reduced inequalities";
+      }
+      else if(this.goal==="11"){
+        return "Sustainable cities and communities";
+      }
+      else if(this.goal==="12"){
+        return "Responsible consumption and production";
+      }
+      else if(this.goal==="13"){
+        return "Climate action";
+      }
+      else if(this.goal==="14"){
+        return "Life below water";
+      }
+      else if(this.goal==="15"){
+        return "Life on land";
+      }
+      else if(this.goal==="16"){
+        return "Peace, justice and strong institutions";
+      }
+      else if(this.goal==="17"){
+        return "Partnerships for the goals";
+      }
+      else if(this.goal==="all"){
+        return "This is an image depicting all Sustainable Development Goals";
+      }
+      else if(this.goal==="circle"){
+        return "This is an image depicting a logo for Sustainable Development Goals";
+      }
+      else {
+        return this.label;
+      }
+    }
+    else{
+      return this.label;
+    }
+  }
   render() {
     return html`
 <div class="wrapper">
   <div>${this.title}</div>
+  <div><img src="/lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
   <slot></slot>
 </div>`;
   }
