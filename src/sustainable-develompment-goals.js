@@ -113,7 +113,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     return html`
 <div class="wrapper">
   <div>${this.title}</div>
-  <div><img src="/lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
+  <div><img src="../lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
   <slot></slot>
 </div>`;
   }
