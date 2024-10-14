@@ -24,7 +24,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
       label: { type: String},
       width: { type: String},
       height: { type: String},
-      colorOnly: {type: Boolean, attribute: color-only},
+      colorOnly: {type: Boolean, attribute: "color-only"},
     };
   }
 
@@ -37,6 +37,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
         font-size: var(--sustainable-develompment-goals-font-size, var(--ddd-font-size-s));
+        //these are the variables for the different colors of blocks taken from the crit in class
         --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-2: rgb(210, 160, 42);
         --un-sdg-goal-3: rgb(44, 155, 72);
@@ -54,8 +55,6 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
         --un-sdg-goal-15: rgb(63, 175, 73);
         --un-sdg-goal-16: rgb(1, 85, 138);
         --un-sdg-goal-17: rgb(25, 54, 103);
-        --width: this.width;
-        --height: this.height;
       }
       .wrapper {
         margin: var(--ddd-spacing-2);
@@ -65,16 +64,25 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
         padding: 0;
         margin: 0;
       }
+      /* css to dsiplay image correctly */
       img {
         width: 254px;
         height: 254px;
       }
+      //css to display block colors
+      .coloronly{
+        width: 254px;
+        height: 254px;
+        display: inline-block;
+      }
     `];
   }
 
+  //this updates the label based off of the different goal numbers changing in the html
   updated(changedProperties) {
     this.label = updateLabel();
   }
+  //reusage of the below thing that I made before thursday class to change the default label
   updateLabel(){
       if (this.goal==="1"){
         return "No poverty";
@@ -206,15 +214,17 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     }
   }
   render() {
+    //This outputs only the color of the block if the attribute is set to true
     if(this.colorOnly){
       return html`
-  <div class="color-only" style="background-color: --un-sdg-goal-${this.goal}"></div>
+  <div class="coloronly" style="background-color: var(--un-sdg-goal-${this.goal});"></div>
       `
     }
+    //this outputs the correct number block or special block
     return html`
 <div class="wrapper">
   <div>${this.title}</div>
-  <div><img loading="lazy" fetchPriority="low" src="../lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
+  <div> <img loading="lazy" fetchPriority="low" src="../lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
   <slot></slot>
 </div>`;
   }
