@@ -15,16 +15,18 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     this.height = "254px";
     this.width = "254px";
     this.colorOnly = false;
+    this.imgSrc = "1";
   }
 
   static get properties() {
     return {
       title: { type: String },
-      goal: { type: String },
-      label: { type: String},
+      goal: { type: String, reflect: true },
+      label: { type: String, reflect: true},
       width: { type: String},
       height: { type: String},
       colorOnly: {type: Boolean, attribute: "color-only"},
+      imgSrc: {type: String, reflect: true},
     };
   }
 
@@ -81,6 +83,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
   //this updates the label based off of the different goal numbers changing in the html
   updated(changedProperties) {
     this.label = updateLabel();
+    this.imgSrc = new URL(`../lib/goals-${this.goal}.svg`, import.meta.url).href;
   }
   //reusage of the below thing that I made before thursday class to change the default label
   updateLabel(){
@@ -214,6 +217,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     }
   }
   render() {
+    let imgSrc = new URL(`../lib/goals-${this.goal}.svg`, import.meta.url).href;
     //This outputs only the color of the block if the attribute is set to true
     if(this.colorOnly){
       return html`
@@ -224,7 +228,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     return html`
 <div class="wrapper">
   <div>${this.title}</div>
-  <div> <img loading="lazy" fetchPriority="low" src="../lib/goals-${this.goal}.svg" alt="${this.getLabel()}"></div>
+  <div> <img loading="lazy" fetchPriority="low" src="${(imgSrc)}" alt="${this.getLabel()}"></div>
   <slot></slot>
 </div>`;
   }

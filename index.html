@@ -58,11 +58,15 @@
     <sustainable-develompment-goals goal="circle"></sustainable-develompment-goals>
     <sustainable-develompment-goals goal="all"></sustainable-develompment-goals>
     <sustainable-develompment-goals color-only="true" goal="7"></sustainable-develompment-goals>
-    <h2>Slot usage</h2>
-    <sustainable-develompment-goals data-accent="2" data-primary="17"><div>Sample slot content</div></sustainable-develompment-goals>
-    <h2>Property usage</h2>
-    <sustainable-develompment-goals id="example" title="Sample property title"></sustainable-develompment-goals>
+    <sustainable-develompment-goals id="random" goal="5"></sustainable-develompment-goals>
+    <button onclick="changeRandomGoal()">Randomize</button>
   </div>
+  <script>
+    function changeRandomGoal(){
+      const random = Math.floor(Math.random() * 17) + 1;
+      document.getElementById('random').goal = random.toString();
+    }
+  </script>
   <script type="module" src="./src/sustainable-develompment-goals.js"></script>
 
   <!-- Take HAX, the Web and you further down the rabbit hole -->
@@ -143,6 +147,5 @@
       </ul>
     </div>
   </details>
-  <script type="module" src="./src/sustainable-develompment-goals.js"></script>
 </body>
 </html>
