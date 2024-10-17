@@ -15,7 +15,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     this.height = "254px";
     this.width = "254px";
     this.colorOnly = false;
-    this.imgSrc = "1";
+    this.imgSrc = "";
   }
 
   static get properties() {
@@ -40,6 +40,8 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
         font-family: var(--ddd-font-navigation);
         font-size: var(--sustainable-develompment-goals-font-size, var(--ddd-font-size-s));
         //these are the variables for the different colors of blocks taken from the crit in class
+        //it makes me write the first one twice for it to work. Dont know why but it works this way
+        --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-1: rgb(235, 28, 44);
         --un-sdg-goal-2: rgb(210, 160, 42);
         --un-sdg-goal-3: rgb(44, 155, 72);
@@ -62,20 +64,20 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
         margin: var(--ddd-spacing-2);
         padding: var(--ddd-spacing-4);
       }
-      div {
-        padding: 0;
-        margin: 0;
-      }
       /* css to dsiplay image correctly */
       img {
         width: 254px;
         height: 254px;
       }
       //css to display block colors
-      .coloronly{
-        width: 254px;
+      div{
         height: 254px;
-        display: inline-block;
+        width: 254px;
+      }
+      .coloronly{
+        height: 254px;
+        width: 254px;
+        margin: 20px;
       }
     `];
   }
@@ -221,7 +223,7 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
     //This outputs only the color of the block if the attribute is set to true
     if(this.colorOnly){
       return html`
-  <div class="coloronly" style="background-color: var(--un-sdg-goal-${this.goal});"></div>
+  <div class="coloronly" style="background-color: var(--un-sdg-goal-${this.goal})"></div>
       `
     }
     //this outputs the correct number block or special block
