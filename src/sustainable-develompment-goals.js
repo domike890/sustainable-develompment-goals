@@ -232,7 +232,6 @@ export class sustainableDevelompmentGoals extends DDDSuper(LitElement) {
   <slot></slot>
 </div>`;
   }
-
   /**
    * haxProperties integration via file reference
    */
